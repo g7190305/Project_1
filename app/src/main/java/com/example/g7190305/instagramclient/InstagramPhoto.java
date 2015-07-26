@@ -5,6 +5,7 @@ package com.example.g7190305.instagramclient;
  */
 public class InstagramPhoto {
     private String username;
+    private String userImage;
     private String caption;
     private String imageUrl;
     private String type;
@@ -57,5 +58,13 @@ public class InstagramPhoto {
 
     public void setLikesCount(int likesCount) {
         this.likesCount = likesCount;
+    }
+
+    public String getUserImage() {
+        return userImage;
+    }
+
+    public void setUserImage(String userImage) {
+        this.userImage = userImage;
     }
 }

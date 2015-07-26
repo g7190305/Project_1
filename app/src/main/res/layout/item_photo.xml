@@ -6,10 +6,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/ivPhoto"
-        android:layout_alignParentTop="true"
+        android:adjustViewBounds="true"
+        android:minHeight="20dp"
+        android:layout_below="@+id/ivUserImage"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="false"
-        android:adjustViewBounds="true" />
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="match_parent"
@@ -20,4 +21,34 @@
         android:layout_below="@+id/ivPhoto"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ivUserImage"
+        android:minWidth="10dp"
+        android:minHeight="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:maxHeight="30dp"
+        android:maxWidth="30dp"
+        android:scaleType="center"
+        android:adjustViewBounds="true"
+        android:layout_margin="4dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/tvUsername"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/ivUserImage"
+        android:layout_toEndOf="@+id/ivUserImage"
+        android:minHeight="10dp"
+        android:lines="1"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp" />
 </RelativeLayout>
