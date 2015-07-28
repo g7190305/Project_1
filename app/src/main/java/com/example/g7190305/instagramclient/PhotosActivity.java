@@ -76,6 +76,7 @@ public class PhotosActivity extends ActionBarActivity {
                         photo.setImageUrl(photoJSON.getJSONObject("images").getJSONObject("standard_resolution").getString("url"));
                         photo.setImageHeight(photoJSON.getJSONObject("images").getJSONObject("standard_resolution").getInt("height"));
                         photo.setLikesCount(photoJSON.getJSONObject("likes").getInt("count"));
+                        photo.setCreateTime(photoJSON.getLong("created_time"));
 
                         photos.add(photo);
                     } catch( JSONException e ) {

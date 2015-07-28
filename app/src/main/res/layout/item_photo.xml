@@ -8,7 +8,7 @@
         android:id="@+id/ivPhoto"
         android:adjustViewBounds="true"
         android:minHeight="20dp"
-        android:layout_below="@+id/ivUserImage"
+        android:layout_below="@+id/rivUserImage"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -22,20 +22,20 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <ImageView
+    <com.makeramen.roundedimageview.RoundedImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/ivUserImage"
+        android:id="@+id/rivUserImage"
         android:minWidth="10dp"
         android:minHeight="10dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:maxHeight="30dp"
-        android:maxWidth="30dp"
-        android:scaleType="center"
-        android:adjustViewBounds="true"
-        android:layout_margin="4dp" />
+        android:maxHeight="40dp"
+        android:maxWidth="40dp"
+        android:scaleType="fitCenter"
+        android:layout_margin="5dp"
+        android:adjustViewBounds="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -43,12 +43,47 @@
         android:text="New Text"
         android:id="@+id/tvUsername"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/ivUserImage"
-        android:layout_toEndOf="@+id/ivUserImage"
+        android:layout_toRightOf="@+id/rivUserImage"
+        android:layout_toEndOf="@+id/rivUserImage"
         android:minHeight="10dp"
         android:lines="1"
         android:textSize="14dp"
         android:textStyle="bold"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp" />
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@color/simple_yellow"
+        android:drawablePadding="8dp"
+        android:gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="time"
+        android:id="@+id/tvTimeStamp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="7dp"
+        android:layout_marginBottom="7dp"
+        android:gravity="right"
+        android:layout_alignEnd="@id/lvPhotos"
+        android:layout_marginRight="5dp"
+        android:textSize="10dp"
+        android:layout_above="@+id/ivPhoto" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="likes"
+        android:id="@+id/tvLikes"
+        android:layout_above="@+id/ivPhoto"
+        android:layout_toLeftOf="@+id/tvTimeStamp"
+        android:layout_alignParentTop="true"
+        android:drawableStart="@mipmap/ic_likes_small"
+        android:layout_marginTop="7dp"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="7dp"
+        android:layout_marginRight="5dp"
+        android:textSize="10dp" />
 </RelativeLayout>

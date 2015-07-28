@@ -1,7 +1,8 @@
 package com.example.g7190305.instagramclient;
 
 import android.content.Context;
-import android.text.Html;
+import android.graphics.Color;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +10,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.makeramen.roundedimageview.RoundedImageView;
+import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Transformation;
 
 import java.util.List;
 
@@ -36,16 +40,40 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
         TextView tvCaption = (TextView) convertView.findViewById(R.id.tvCaption);
         ImageView ivPhoto = (ImageView) convertView.findViewById(R.id.ivPhoto);
         TextView tvUsername = (TextView) convertView.findViewById(R.id.tvUsername);
-        ImageView ivUserImage = (ImageView) convertView.findViewById(R.id.ivUserImage);
+        TextView tvTimeStamp = (TextView) convertView.findViewById(R.id.tvTimeStamp);
+        TextView tvLlikes =(TextView) convertView.findViewById(R.id.tvLikes);
+        RoundedImageView rivUserImage = (RoundedImageView) convertView.findViewById(R.id.rivUserImage);
+
+        Transformation transformation = new RoundedTransformationBuilder()
+                .borderColor(Color.BLACK)
+                .borderWidthDp(1)
+                .cornerRadiusDp(30)
+                .oval(false)
+                .build();
 
         tvCaption.setText(photo.getCaption());
         tvUsername.setText(photo.getUsername());
+        tvLlikes.setText(String.format("%d",photo.getLikesCount()));
+        // int logstr = photo.getCreateTime();
+        // Log.i("DEBUG", String.format("create time: %d", logstr));
+        // tvTimeStamp.setText(DateUtils.getRelativeTimeSpanString(photo.getCreateTime() * 1000).toString());
+        // tvTimeStamp.setText(DateUtils.getRelativeTimeSpanString(photo.getCreateTime(), System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS ));
+        String timespan = DateUtils.getRelativeTimeSpanString(photo.getCreateTime()*1000, System.currentTimeMillis(), DateUtils.MINUTE_IN_MILLIS ).toString();
+        tvTimeStamp.setText(timespan);
         // Clear out the imageview
         ivPhoto.setImageResource(0);
         Picasso.with(getContext()).load(photo.getImageUrl()).into(ivPhoto);
-        ivUserImage.setImageResource(0);
-        Picasso.with(getContext()).load(photo.getUserImage()).resize(30,30).into(ivUserImage);
 
+        // tvUsername.setCompoundDrawables(rivUserImage.getDrawable(), null, null, null);
+
+        rivUserImage.setImageResource(0);
+        Picasso.with(getContext())
+                .load(photo.getUserImage())
+                .resize(30, 0)
+                .transform(transformation)
+                .into(rivUserImage);
+
+        // tvUsername.setCompoundDrawables(rivUserImage.getDrawable(), null, null, null);
         // userHtml = String.format("<image src=\"%s\" /> <span>%s</span>", photo.getUserImage(), photo.getUsername());
         // tvUsername.setText(Html.fromHtml(userHtml));
         return convertView;

@@ -11,6 +11,15 @@ public class InstagramPhoto {
     private String type;
     private int imageHeight;
     private int likesCount;
+    private long createTime;
+
+    public long getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(long createTime) {
+        this.createTime = createTime;
+    }
 
     public String getCaption() {
         return caption;
