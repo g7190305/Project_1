@@ -80,10 +80,13 @@
         android:layout_above="@+id/ivPhoto"
         android:layout_toLeftOf="@+id/tvTimeStamp"
         android:layout_alignParentTop="true"
-        android:drawableStart="@mipmap/ic_likes_small"
-        android:layout_marginTop="7dp"
+        android:drawableStart="@mipmap/ic_likes"
+        android:drawablePadding="4dp"
+        android:textSize="10dp"
+        android:layout_alignParentBottom="false"
+        android:background="@color/cornsilk"
         android:gravity="center_vertical"
-        android:layout_marginBottom="7dp"
-        android:layout_marginRight="5dp"
-        android:textSize="10dp" />
+        android:height="20dp"
+        android:layout_alignParentStart="false"
+        android:layout_marginRight="8dp" />
 </RelativeLayout>

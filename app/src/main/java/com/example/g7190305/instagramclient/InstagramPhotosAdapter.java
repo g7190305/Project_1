@@ -2,6 +2,7 @@ package com.example.g7190305.instagramclient;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,8 +42,16 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
         ImageView ivPhoto = (ImageView) convertView.findViewById(R.id.ivPhoto);
         TextView tvUsername = (TextView) convertView.findViewById(R.id.tvUsername);
         TextView tvTimeStamp = (TextView) convertView.findViewById(R.id.tvTimeStamp);
-        TextView tvLlikes =(TextView) convertView.findViewById(R.id.tvLikes);
+        TextView tvLikes =(TextView) convertView.findViewById(R.id.tvLikes);
+
         RoundedImageView rivUserImage = (RoundedImageView) convertView.findViewById(R.id.rivUserImage);
+
+        float density = getContext().getResources().getDisplayMetrics().density;
+        Drawable drawable = getContext().getDrawable(R.mipmap.ic_likes);
+        int width = Math.round(30 * density);
+        int height = Math.round(24 * density);
+        drawable.setBounds(0, 0, width, height);
+        tvLikes.setCompoundDrawables(drawable, null, null, null);
 
         Transformation transformation = new RoundedTransformationBuilder()
                 .borderColor(Color.BLACK)
@@ -53,7 +62,8 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
 
         tvCaption.setText(photo.getCaption());
         tvUsername.setText(photo.getUsername());
-        tvLlikes.setText(String.format("%d",photo.getLikesCount()));
+        tvLikes.setText(String.format("%d", photo.getLikesCount()));
+
         // int logstr = photo.getCreateTime();
         // Log.i("DEBUG", String.format("create time: %d", logstr));
         // tvTimeStamp.setText(DateUtils.getRelativeTimeSpanString(photo.getCreateTime() * 1000).toString());
