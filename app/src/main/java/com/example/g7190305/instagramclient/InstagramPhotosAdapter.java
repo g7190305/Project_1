@@ -47,9 +47,9 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
         RoundedImageView rivUserImage = (RoundedImageView) convertView.findViewById(R.id.rivUserImage);
 
         float density = getContext().getResources().getDisplayMetrics().density;
-        Drawable drawable = getContext().getDrawable(R.mipmap.ic_likes);
-        int width = Math.round(30 * density);
-        int height = Math.round(24 * density);
+        Drawable drawable = getContext().getResources().getDrawable(R.mipmap.ic_likes, null);
+        int width = Math.round(15 * density);
+        int height = Math.round(15 * density);
         drawable.setBounds(0, 0, width, height);
         tvLikes.setCompoundDrawables(drawable, null, null, null);
 

@@ -1,6 +1,7 @@
 package com.example.g7190305.instagramclient;
 
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -23,6 +24,7 @@ public class PhotosActivity extends ActionBarActivity {
     public static final String CLIENT_ID="5d67c34b6e914a66908a95d50f3c6fdc";
     private ArrayList<InstagramPhoto> photos;
     private InstagramPhotosAdapter aPhotos;
+    private SwipeRefreshLayout swipeContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,25 @@ public class PhotosActivity extends ActionBarActivity {
         ListView lvPhotos = (ListView) findViewById(R.id.lvPhotos);
         // 3. Set the Adapter binding it to the ListView
         lvPhotos.setAdapter(aPhotos);
+
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+
+        // Setup refresh listener which triggers new data loading
+        swipeContainer.setOnRefreshListener(new android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // Your code to refresh the list here.
+                // Make sure you call swipeContainer.setRefreshing(false)
+                // once the network request has completed successfully.
+                fetchPopularPhotos();
+            }
+        });
+        // Configure the refreshing colors
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+
         // Fetch the popular photos
         fetchPopularPhotos();
     }
@@ -52,7 +73,6 @@ public class PhotosActivity extends ActionBarActivity {
                 Log.i("DEBUG", response.toString());
                 JSONArray photosJSON;
 
-
                 try {
                     photosJSON = response.getJSONArray("data");
                 } catch( JSONException e) {
@@ -62,6 +82,7 @@ public class PhotosActivity extends ActionBarActivity {
                 }
                     //Log.i("DEBUG", )
                     //log.i(photosJSON);
+                photos.clear();
                 for (int i=0; i < photosJSON.length(); i++ ) {
                     // if (photoJSON.getString("type") == "image" || photoJSON.getString("type") == "video") {
                     InstagramPhoto photo = new InstagramPhoto();
@@ -84,7 +105,9 @@ public class PhotosActivity extends ActionBarActivity {
                     }
                 }
 
+
                 aPhotos.notifyDataSetChanged();
+                swipeContainer.setRefreshing(false);
             }
 
             @Override
