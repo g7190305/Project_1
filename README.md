@@ -2,7 +2,7 @@
 
 Instagram Photo Viewer is an android app that allows a user to check out popular photos from Instagram. The app utilizes Instagram API to display images and basic image information to the user.
 
-Time spent: **X** hours spent in total
+Time spent: 10 hours spent in total
 
 ## User Stories
 
@@ -51,7 +51,7 @@ Describe any challenges encountered while building the app.
 
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright [2015] [g7190305]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
